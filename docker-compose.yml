@@ -1,0 +1,13 @@
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile.transformers
+    container_name: transcribe
+    environment:
+      MODEL_ID: "openai/whisper-large-v3-turbo"
+      LANGUAGE: "en"
+    volumes:
+      - .:/root
+      - c:/temp/.cache:/root/.cache
+    command: ["python3", "infer.py"]

@@ -1,0 +1,8 @@
+services:
+  ffmpeg:
+    image: jrottenberg/ffmpeg:4.4-alpine
+    volumes:
+      - ./:/workspace
+    working_dir: /workspace
+    entrypoint: >
+      sh -c 'find ./audio_sources -maxdepth 1 -name "*.m4a" -print0 | xargs -0 -I {} sh -c '\''ffmpeg -i "{}" -q:a 0 -map a "${0%.m4a}.mp3"'\'' {}'
