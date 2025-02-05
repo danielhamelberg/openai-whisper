@@ -39,6 +39,7 @@ This project processes audio files from the `audio_sources` directory, transcrib
 ## Environment Variables
 
 - `MODEL_ID`: Specify the model ID for the transcription pipeline (e.g., `openai/whisper-large-v3-turbo`).
+- `LANGUAGE`: Specify the language code of the input audio (e.g., `en`, or `nl`).
 
 ## Logging
 
