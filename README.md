@@ -19,7 +19,7 @@ This project processes audio files from the `audio_sources` directory, transcrib
     pip install -r requirements.txt
     ```
 
-2. **Run the Transcription Pipeline**: Execute the [infer.py](http://_vscodecontentref_/0) script to process and transcribe audio files:
+2. **Run the Transcription Pipeline**: Execute the [infer.py](https://github.com/danielhamelberg/openai-whisper/infer.py) script to process and transcribe audio files:
     ```sh
     python infer.py
     ```
@@ -44,44 +44,3 @@ This project processes audio files from the `audio_sources` directory, transcrib
 ## Logging
 
 Logs are saved to [transcription.log] in the project directory.
-
-## Pipeline Configuration Examples
-
-### Example Configuration for 8 GB RAM
-
-If you have 8 GB of RAM, use the following configuration for the pipeline kwargs:
-
-```python
-pipe = pipeline(
-    "automatic-speech-recognition",
-    model=model,
-    tokenizer=processor.tokenizer,
-    feature_extractor=processor.feature_extractor,
-    chunk_length_s=15,  # Shorter chunk length
-    stride_length_s=5,  # Smaller stride length
-    batch_size=2,       # Smaller batch size
-    torch_dtype=torch_dtype,
-    device=device,
-    return_timestamps=True,
-    generate_kwargs={"language": "nl"} 
-)
-```
-
-### Example Configuration for plenty of RAM
-If you have e.g. 128 GB of RAM, use the following configuration for the pipeline kwargs:
-
-```python
-pipe = pipeline(
-    "automatic-speech-recognition",
-    model=model,
-    tokenizer=processor.tokenizer,
-    feature_extractor=processor.feature_extractor,
-    chunk_length_s=60,  # Longer chunk length
-    stride_length_s=10, # Larger stride length
-    batch_size=16,      # Larger batch size
-    torch_dtype=torch_dtype,
-    device=device,
-    return_timestamps=True,
-    generate_kwargs={"language": "nl"} 
-)
-```
